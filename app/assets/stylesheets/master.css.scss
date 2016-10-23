@@ -1,0 +1,15 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background: url('/assets/weather.png');
+}
+
+.navbar.navbar-inverse {
+  background:url('/assets/concrete_wall.png');
+}
+
+.desc {
+	font-size: 16px;
+	margin: 15px;
+}
