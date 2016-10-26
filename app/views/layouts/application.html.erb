@@ -18,21 +18,86 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Cyber-Jeopardy</a>
+      <%= link_to 'Cyber-Jeopardy', root_path, class: "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Link</a></li>
+      <ul class="nav navbar-nav navbar-left">
+        <li data-toggle="modal" data-target="#myModal">
+          Link
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose Teams<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li class="divider"></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+          </ul>
+        </li>
       </ul>
+<!--      <ul class="nav navbar-nav">
+      </ul> -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a Question</h4>
+      </div>
+      <!-- simple form was moved out of modal body div to cover the submit button -->
+    <%= simple_form_for @ques, url: questions_path do |f| %>
+      <div class="modal-body">
+          <%= f.input :topic %>
+          <%= f.input :points %>
+          <%= f.input :question %>
+          <%= f.input :answer %>          
+          <br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Add Question", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-default pull-left qbtn" data-toggle="modal" data-target="#myModal">
+      Add Question
+    </button>
+</div>
+
+<div class="clear"></div>
+<!-- Modal end -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <% if user_signed_in? %>
+			<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+		<% else %>
+  			<li><%= link_to 'Sign in', new_user_session_path %></li>
+  			<li><%= link_to 'Sign up', new_user_registration_path %></li>
+		<% end %>
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div><!-- /.navbar-collapse btn btn-primary btn-lg pull-right-->
   </div><!-- /.container-fluid -->
 </nav>
 
+<% if notice.present? %>
+	<p class="alert alert-info"><%= notice %></p>
+<% end %>
+<% if alert.present? %>
+	<p class="alert alert-danger"><%= alert %></p>
+<% end %>
 <%= yield %>
 
 </body>

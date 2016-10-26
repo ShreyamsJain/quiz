@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Arvo');
 
 body {
   background: url('/assets/weather.png');
@@ -7,9 +8,35 @@ body {
 
 .navbar.navbar-inverse {
   background:url('/assets/concrete_wall.png');
+  font-family: 'Arvo', serif;
 }
 
 .desc {
 	font-size: 16px;
 	margin: 15px;
+}
+
+.booyah-box {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin-top:10px;
+  margin-bottom:15px;
+  padding:20px;
+  font-family: 'Arvo', serif;
+}
+
+.booyah-box h2, .booyah-box h1 {
+  margin:10px;
+}
+
+#user_email, #user_password, #user_password_confirmation {
+  width: 100%;
+}
+
+.qbtn {
+  margin-top: 7px;
 }
